@@ -1,13 +1,15 @@
 import React from "react";
+import { SideBar } from "./header/header";
+
 export function Home() {
   return (
 
-
-
+<>
+<SideBar/>
     
     <div className="content">
       <div className="animated fadeIn">
-        <div className="row">
+        <div className="row" style ={{marginLeft:"255px"}}>
           <div className="col-lg-6">
             <div className="card">
               <div className="card-body">
@@ -422,7 +424,8 @@ export function Home() {
         </div>
       </div>
 
-      <div className="clearfix"></div>
+  
     </div>
+    </>
   );
 }
