@@ -1,10 +1,15 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink,useHistory } from "react-router-dom";
 import loginpic from "../images/logo.png";
 import { useState } from "react";
+import { Register } from "./Register";
+import { Home } from "./Home";
 
 export function Login() {
   const [userLogin, setLogin] = useState({ email: "", password: "" });
+  const [Login, settLogin] = useState(false);
+  const [token, setToken] = useState("");
+  let history = useHistory();
   let name, value;
   const handleChange = (e) => {
     name = e.target.name;
@@ -16,7 +21,7 @@ export function Login() {
   const handlesubmit = async(e) => {
       const {email,password} = userLogin;
     e.preventDefault();
-    alert("gg");
+
 
     const response = await fetch("http://localhost:3030/authentication",{
         method:"post",
@@ -26,87 +31,115 @@ export function Login() {
         body:JSON.stringify({
             email,
             password,
-            "strategy":"local"
+            "strategy":"local",
+             
         })
 
     });
-     const data = await response.json();
-     console.log(data)
+
+     const data1 = await response.json();
+     console.log(data1);
+    if(data1 && data1.accessToken){
+      history.push("/home");
+
+      localStorage.setItem("token",JSON.stringify({
+        login:true,
+        token: data1.accessToken
+      }));
+    }else{
+      console.log("hellol");
+    }
+
+
+  //  sessionStorage.setItem("token",JSON.stringify(data1))
+
+  //  localStorage.getItem("token")
+
+
+     
+    
   };
   return (
-    <div class="sufee-login d-flex align-content-center flex-wrap  bg-dark">
-      <div class="container">
-        <div class="login-content">
-          <div class="login-logo">
-            <a href="index.html">
-              <img class="align-content" src={loginpic} alt="in" />
-            </a>
-          </div>
-          <div class="login-form">
-            <form method ="post">
-              <div class="form-group">
-                <label>Email address</label>
-                <input
-                  type="email"
-                  value={userLogin.email}
-                  onChange={handleChange}
-                  name="email"
-                  class="form-control"
-                  placeholder="Email"
-                />
+<>
+{!Login ?
+
+    <div className= "sufee-login d-flex align-content-center flex-wrap  bg-dark " >
+    <div className="container">
+      <div className="login-content">
+        <div className="login-logo">
+          <a href="index.html">
+            <img className="align-content" src={loginpic} alt="in" />
+          </a>
+        </div>
+        <div className="login-form">
+          <form method ="post">
+            <div className="form-group">
+              <label>Email address</label>
+              <input
+                type="email"
+                value={userLogin.email}
+                onChange={handleChange}
+                name="email"
+                className="form-control"
+                placeholder="Email"
+              />
+            </div>
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                value={userLogin.password}
+                onChange={handleChange}
+                name="password"
+                className="form-control"
+                placeholder="Password"
+              />
+            </div>
+            <div className="checkbox">
+              <label>
+                <input type="checkbox" /> Remember Me
+              </label>
+              <label className="pull-right">
+                <a href="#">Forgotten Password?</a>
+              </label>
+            </div>
+            <button
+              type="submit"
+              onClick={handlesubmit}
+              className="btn btn-success btn-flat m-b-30 m-t-30"
+            >
+              Sign in
+            </button>
+
+          
+            <div className="social-login-content">
+              <div className="social-button">
+                <button
+                  type="button"
+                  className="btn social facebook btn-flat btn-addon mb-3"
+                >
+                  <i className="ti-facebook"></i>Sign in with facebook
+                </button>
+                <button
+                  type="button"
+                  className="btn social twitter btn-flat btn-addon mt-2"
+                >
+                  <i className="ti-twitter"></i>Sign in with twitter
+                </button>
               </div>
-              <div class="form-group">
-                <label>Password</label>
-                <input
-                  type="password"
-                  value={userLogin.password}
-                  onChange={handleChange}
-                  name="password"
-                  class="form-control"
-                  placeholder="Password"
-                />
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" /> Remember Me
-                </label>
-                <label class="pull-right">
-                  <a href="#">Forgotten Password?</a>
-                </label>
-              </div>
-              <button
-                type="submit"
-                onClick={handlesubmit}
-                class="btn btn-success btn-flat m-b-30 m-t-30"
-              >
-                Sign in
-              </button>
-              <div class="social-login-content">
-                <div class="social-button">
-                  <button
-                    type="button"
-                    class="btn social facebook btn-flat btn-addon mb-3"
-                  >
-                    <i class="ti-facebook"></i>Sign in with facebook
-                  </button>
-                  <button
-                    type="button"
-                    class="btn social twitter btn-flat btn-addon mt-2"
-                  >
-                    <i class="ti-twitter"></i>Sign in with twitter
-                  </button>
-                </div>
-              </div>
-              <div class="register-link m-t-15 text-center">
-                <p>
-                  Don't have account ?{" "}
-                  <NavLink to="/register"> Sign Up Here</NavLink>
-                </p>
-              </div>
-            </form>
-          </div>
+            </div>
+            <div className="register-link m-t-15 text-center">
+              <p>
+                Don't have account ?{" "}
+                <NavLink to="/register"> Sign Up Here</NavLink>
+              </p>
+            </div>
+          </form>
         </div>
       </div>
     </div>
+  </div>
+:<Home/>}
+</>
   );
 }

@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 export function Navigation() {
   return (
     <>
-      <h1 style={{position:"sticky",top:"0" , zIndex:"99999",background:"red"}}>Dashboard</h1>
+      <h1 style={{position:"sticky",top:"0" , zIndex:"99999",background:"gray"}}>Dashboard</h1>
 
       {/* <ul>
         <li>

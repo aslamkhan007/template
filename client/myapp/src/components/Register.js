@@ -1,6 +1,6 @@
 import { useState } from "react";
 import React from "react";
-import {} from "@material-ui/core";
+// import {} from "@material-ui/core";
 import { NavLink } from "react-router-dom";
 
 export function Register() {
@@ -45,7 +45,7 @@ export function Register() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        
+
       },
       body: JSON.stringify({
         email,
@@ -57,6 +57,7 @@ export function Register() {
     const data = await respone.json();
 
     console.log(data);
+    alert (data.name)
   };
 
   return (
