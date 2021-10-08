@@ -13,13 +13,16 @@ function App() {
     <>
     <SideBar/>
       <Switch>
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/" component={Login} />
-        <Route exact path="/home" component={Home} />
+        {/* <Route exact path="/register" component={Register} /> */}
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/" component={Home} />
+        <PrivateRouter exact path ="/register" component ={Register}/>
+        {/* <PrivateRouter exact path ="/login" component ={Login}/> */}
+        {/* <Route exact path="/home" component={Home} /> */}
         <Route exact path="**">
           <Redirect to={{ pathname: "/" }} />
         </Route>
-{/* <PrivateRouter exact path ="/home" component ={Home}/> */}
+
       </Switch>
     </>
   );

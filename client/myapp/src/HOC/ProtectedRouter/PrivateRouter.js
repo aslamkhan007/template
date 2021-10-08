@@ -3,12 +3,12 @@ import { Redirect, Route } from 'react-router-dom';
 
 
 export const PrivateRouter =({component:Component,...rest})=>{
- 
+ console.log("jjjjjjjjjjjjjjjjjjjj");
     return(
         <Route {...rest} component={(props)=>{
             const token =localStorage.getItem('token')
              console.log(token,"vvvvvvvvv");
-            if(token){
+            if(token){  
                 return <Component {...props}/>
          
             }

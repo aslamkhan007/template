@@ -44,6 +44,7 @@ export function Login() {
       }
       console.log(data1);
       if (data1 && data1.accessToken) {
+        console.log(data1,"hhhhhhhhhhhh");
         history.push("/home");
 
         localStorage.setItem(
