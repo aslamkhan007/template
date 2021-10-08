@@ -5,7 +5,7 @@ export function Navigation() {
   return (
     <>
       <h1 style={{position:"sticky",top:"0" , zIndex:"99999",background:"gray"}}>Dashboard</h1>
-
+     
       {/* <ul>
         <li>
           <NavLink to="/register">register</NavLink>

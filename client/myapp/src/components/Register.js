@@ -35,9 +35,8 @@ export function Register() {
   //   console.log(data);
   // };
 
-  
   const handleSubmit = async (e) => {
-    const { name,email, password } = user;
+    const { name, email, password } = user;
     alert("it works!");
     e.preventDefault();
 
@@ -45,7 +44,6 @@ export function Register() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-
       },
       body: JSON.stringify({
         email,
@@ -57,7 +55,7 @@ export function Register() {
     const data = await respone.json();
 
     console.log(data);
-    alert (data.name)
+    alert(data.name);
   };
 
   return (
@@ -116,22 +114,7 @@ export function Register() {
               >
                 Register
               </button>
-              <div className="social-login-content">
-                <div className="social-button">
-                  <button
-                    type="button"
-                    className="btn social facebook btn-flat btn-addon mb-3"
-                  >
-                    <i className="ti-facebook"></i>Register with facebook
-                  </button>
-                  <button
-                    type="button"
-                    className="btn social twitter btn-flat btn-addon mt-2"
-                  >
-                    <i className="ti-twitter"></i>Register with twitter
-                  </button>
-                </div>
-              </div>
+
               <div className="register-link m-t-15 text-center">
                 <p>
                   Already have account ? <NavLink to="/login"> Sign in</NavLink>

@@ -1,17 +1,20 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { Navigation } from "../Navigation";
 
 export const SideBar = () => {
   return (
     <>
       <aside id="left-panel" className="left-panel">
-        <nav className="navbar navbar-expand-sm navbar-default" style={{top:"45px"}}>
+        <nav
+          className="navbar navbar-expand-sm navbar-default"
+          style={{ top: "45px" }}
+        >
           <div id="main-menu" className="main-menu collapse navbar-collapse">
             <ul className="nav navbar-nav">
               <li>
                 <NavLink to="/home">
-                  <i className="menu-icon fa fa-laptop"></i>Dashboard{" "}
+                  <i className="menu-icon fa fa-laptop"></i>Home{" "}
                 </NavLink>
               </li>
 

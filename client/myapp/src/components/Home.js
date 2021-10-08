@@ -1,10 +1,12 @@
 import React from "react";
 import { SideBar } from "./header/header";
+import { Navigation } from "./Navigation";
 
 export function Home() {
   return (
 
 <>
+<Navigation/>
 <SideBar/>
     
     <div className="content">
